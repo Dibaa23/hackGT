@@ -578,7 +578,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                  <h5 class="card-title">Income <span>| This Month</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -659,13 +659,13 @@
                     document.addEventListener("DOMContentLoaded", () => {
                       new ApexCharts(document.querySelector("#reportsChart"), {
                         series: [{
-                          name: 'Sales',
+                          name: 'Balance',
                           data: [31, 40, 28, 51, 42, 82, 56],
                         }, {
-                          name: 'Revenue',
+                          name: 'Income',
                           data: [11, 32, 45, 32, 34, 52, 41]
                         }, {
-                          name: 'Customers',
+                          name: 'Goal',
                           data: [15, 11, 32, 18, 9, 24, 11]
                         }],
                         chart: {
@@ -910,7 +910,7 @@
                 document.addEventListener("DOMContentLoaded", () => {
                   var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
                     legend: {
-                      data: ['Allocated Budget', 'Actual Spending']
+                      data: ['Expected Spending', 'Actual Spending']
                     },
                     radar: {
                       // shape: 'circle',
@@ -945,11 +945,11 @@
                       type: 'radar',
                       data: [{
                           value: [4200, 3000, 20000, 35000, 50000, 18000],
-                          name: 'Allocated Budget'
+                          name: 'Actual Spending'
                         },
                         {
                           value: [5000, 14000, 28000, 26000, 42000, 21000],
-                          name: 'Actual Spending'
+                          name: 'Expected Spending'
                         }
                       ]
                     }]
