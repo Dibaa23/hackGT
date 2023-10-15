@@ -250,6 +250,14 @@ h6 {
   padding: 0 20px 20px 20px;
 }
 
+.goalsbarpadding {
+  padding: 20px 20px 70px 20px;
+}
+
+.goalsbarpadding p {
+  padding-top: 40px; /* Adjust the desired padding value */
+}
+
 .card-img-overlay {
   background-color: rgba(255, 255, 255, 0.6);
 }
@@ -360,12 +368,12 @@ h6 {
 
 @media (min-width: 1200px) {
   .logo {
-    width: 280px;
+    width: 480px;
   }
 }
 
 .logo img {
-  max-height: 26px;
+  max-height: 55px;
   margin-right: 6px;
 }
 
@@ -396,6 +404,12 @@ h6 {
 
 .header .search-bar {
   min-width: 360px;
+  padding: 0 20px;
+}
+
+.header .userinput {
+  min-width: 280px;
+  align-items: center;
   padding: 0 20px;
 }
 
@@ -741,6 +755,17 @@ h6 {
   transition: 0.3s;
 }
 
+.card-nav .nav-content b {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #012970;
+  transition: 0.3;
+  padding: 1000px 0 10px 40px;
+  transition: 0.3s;
+}
+
 .sidebar-nav .nav-content a i {
   font-size: 6px;
   margin-right: 8px;
@@ -756,6 +781,7 @@ h6 {
 .sidebar-nav .nav-content a.active i {
   background-color: #4154f1;
 }
+
 
 /*--------------------------------------------------------------
 # Dashboard
@@ -995,7 +1021,7 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Profie Page
+# Profile Page
 --------------------------------------------------------------*/
 .profile .profile-card img {
   max-width: 120px;
