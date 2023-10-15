@@ -1,7 +1,7 @@
 import openai
 import math
 
-openai.api_key = "sk2cHE15c2aEJGjQXcZwikT3BlbkFJb3w4H0PX0dCB8TAwcLiQ"
+openai.api_key = "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"
 
 # Asks purchases question to ChatGPT for advice - DONE
 def gpt_rec(purchases):
