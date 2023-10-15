@@ -7,7 +7,42 @@ import Goal
 
 app = Flask(__name__)
 savings = 1000
-purchases = []
+purchases = [("Dining", 25.00),            # Breakfast at Local Café,
+    ("Dining", 40.00),            # Friday Night Dinner at Italian Restaurant,
+    ("Gas/Automotive", 35.00),    # Weekly Gas Fill-Up,
+    ("Grocery", 100.00),          # Weekly Grocery Shopping,
+    ("Healthcare", 50.00),        # Prescription Medication,
+    ("Lodging", 150.00),          # Weekend Getaway Hotel Stay,
+    ("Merchandise", 80.00),       # Online Clothes Shopping,
+    ("Other", 30.00),             # Monthly Streaming Subscription,
+    ("Other Services", 100.00),   # Haircut and Salon Service,
+    ("Payment", 1200.00),         # Monthly Rent Payment,
+
+    ("Dining", 12.00),            # Coffee and Sandwich at Local Café,
+    ("Dining", 50.00),            # Saturday Night Dinner at Sushi Restaurant,
+    ("Gas/Automotive", 35.00),    # Weekly Gas Fill-Up,
+    ("Grocery", 95.00),           # Weekly Grocery Shopping,
+    ("Healthcare", 25.00),        # Over-the-counter Medication,
+    ("Merchandise", 60.00),       # Shoes from Department Store,
+    ("Other", 10.00),             # Monthly Magazine Subscription,
+    ("Other Services", 60.00),    # House Cleaning Service,
+    ("Payment", 100.00),          # Utility Bill,
+
+    ("Dining", 10.00),            # Coffee and Muffin at Local Café,
+    ("Gas/Automotive", 40.00),    # Weekly Gas Fill-Up,
+    ("Grocery", 110.00),          # Weekly Grocery Shopping,
+    ("Lodging", 180.00),          # Hotel for Friend's Wedding,
+    ("Merchandise", 20.00),       # Book from Local Bookstore,
+    ("Other Services", 50.00),    # Manicure and Pedicure,
+    ("Payment", 50.00),           # Cell Phone Bill,
+
+    ("Dining", 15.00),            # Salad and Juice at Health Food Restaurant,
+    ("Gas/Automotive", 38.00),    # Weekly Gas Fill-Up,
+    ("Grocery", 85.00),           # Weekly Grocery Shopping,
+    ("Merchandise", 40.00),       # Kitchen Appliance from Online Store,
+    ("Other", 15.00),             # Monthly Music Streaming Subscription,
+    ("Payment", 60.00)           # Internet Bill
+]
 investments = []
 goals = Goal.Goals(savings)
 
@@ -29,6 +64,9 @@ def add():
 def update_savings():
     goals.savings = savings
 
+@app.route('/savings', methods=['get'])
+def get_savings():
+    return jsonify({"savings": savings})
 
 @app.route('/goal', methods=['contribute'])
 def contribute():
@@ -85,7 +123,7 @@ def analyze_expenses():
     return jsonify({"message": utils.analyze_expenses(purchases)})
 
 
-@app.route('/transactions', methods=['categorize'])
+@app.route('/transactions', methods=['GET'])
 def categorize_transactions():
     needs, wants, situational = utils.categorize_transaction(purchases)
     return jsonify({"needs": needs, "wants": wants, "situational": situational})

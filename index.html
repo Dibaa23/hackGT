@@ -684,7 +684,28 @@
                         <i class="bi bi-cart"></i>
                       </div>
                       <div class="ps-3">
-                        <h6>$145.39</h6>
+                        <h6 id="data-display">$145.39</h6>
+                      <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                          fetch('http://127.0.0.1:5000/savings', {
+                                method: 'get',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify()
+                            }).then(response => {
+                                  if (!response.ok) {
+                                      throw new Error('Network response was not ok');
+                                  }
+                                  return response.json();
+                              }).then(data => {
+                                  const displayElement = document.getElementById("data-display");
+                                  displayElement.textContent = data.savings; 
+                                  }).catch(error => {
+                                      console.log('Fetch error: ', error);
+                                  });
+                              });
+                              </script>
                         <span class="text-success small pt-1 fw-bold"
                           >Latest transaction: $12.50</span
                         >
@@ -1202,6 +1223,18 @@
 
                 <script>
                   document.addEventListener("DOMContentLoaded", () => {
+                    fetch('http://127.0.0.1:5000/transactions', {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify()
+                            }).then(response => {
+                                  if (!response.ok) {
+                                      throw new Error('Network response was not ok');
+                                  }
+                                  return response.json();
+                              }).then(data => {
                     echarts
                       .init(document.querySelector("#trafficChart"))
                       .setOption({
@@ -1234,37 +1267,22 @@
                             },
                             data: [
                               {
-                                value: 1048,
-                                name: "Gas/Automotive",
+                                value: Math.round(data.needs * 100),
+                                name: "Needs",
                               },
                               {
-                                value: 735,
-                                name: "Grocery",
+                                value: Math.round(data.wants * 100),
+                                name: "Wants",
                               },
                               {
-                                value: 580,
-                                name: "Healthcare",
-                              },
-                              {
-                                value: 484,
-                                name: "Lodging",
-                              },
-                              {
-                                value: 300,
-                                name: "Merchandise",
-                              },
-                              {
-                                value: 300,
-                                name: "Other",
-                              },
-                              {
-                                value: 300,
-                                name: "Payment",
+                                value: Math.round(data.situational * 100),
+                                name: "Situational",
                               },
                             ],
                           },
                         ],
                       });
+                    });
                   });
                 </script>
               </div>
