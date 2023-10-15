@@ -7,7 +7,7 @@ import Goal
 
 app = Flask(__name__)
 savings = 1000
-purchases = []
+purchases = [("Dining", 20),("Gas/Automotive", 30),("Grocery", 50),("Healthcare", 70),("Lodging", 40),("Merchandise", 30),("Other", 15),("Other Services", 25),("Payment", 60)]
 investments = []
 goals = Goal.Goals(savings)
 
@@ -28,6 +28,10 @@ def add():
 @app.route('/goal', methods=['update_savings'])
 def update_savings():
     goals.savings = savings
+
+@app.route('/savings', methods=['get'])
+def get_savings():
+    return jsonify({"savings": savings})
 
 
 @app.route('/goal', methods=['contribute'])
@@ -85,7 +89,7 @@ def analyze_expenses():
     return jsonify({"message": utils.analyze_expenses(purchases)})
 
 
-@app.route('/transactions', methods=['categorize'])
+@app.route('/transactions', methods=['GET'])
 def categorize_transactions():
     needs, wants, situational = utils.categorize_transaction(purchases)
     return jsonify({"needs": needs, "wants": wants, "situational": situational})

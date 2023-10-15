@@ -76,8 +76,8 @@ def categorize_transaction(list_of_purchases):
 
     for purchase in list_of_purchases:
         for item in purchase_dict.keys():
-            if purchase.type == item:
-                purchase_dict[item] += purchase.amount
+            if purchase[0] == item: #type
+                purchase_dict[item] += purchase[1] #amount
 
     situational = 0
     needs = 0
