@@ -657,10 +657,23 @@
 
                   <script>
                     document.addEventListener("DOMContentLoaded", () => {
+                      fetch('http://127.0.0.1:5000/add', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ 'a': 1, 'b': 2 })
+                        }).then(response => {
+                              if (!response.ok) {
+                                  throw new Error('Network response was not ok');
+                              }
+                              return response.json();
+                          })
+                           .then(data => {
                       new ApexCharts(document.querySelector("#reportsChart"), {
                         series: [{
                           name: 'Balance',
-                          data: [31, 40, 28, 51, 42, 82, 56],
+                          data: [31, 40, 28, 51, 42, 82, data.result],
                         }, {
                           name: 'Income',
                           data: [11, 32, 45, 32, 34, 52, 41]
@@ -706,6 +719,7 @@
                         }
                       }).render();
                     });
+                  });
                   </script>
                   <!-- End Line Chart -->
 

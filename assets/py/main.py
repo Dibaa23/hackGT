@@ -1,5 +1,7 @@
 # app.py
 from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS
+
 import utils
 import Goal
 
@@ -72,29 +74,31 @@ def gpt_inv():
     return jsonify({"message": utils.gpt_rec(investments)})
 
 
-@app.route('score', methods=['calculate'])
+@app.route('/score', methods=['calculate'])
 def calculate_score():
     needs, wants, situational = utils.categorize_transaction(purchases)
     return jsonify({"score": utils.calculate_score(needs, situational, wants)})
 
 
-@app.route('expenses', methods=['analyze'])
+@app.route('/expenses', methods=['analyze'])
 def analyze_expenses():
     return jsonify({"message": utils.analyze_expenses(purchases)})
 
 
-@app.route('transactions', methods=['categorize'])
+@app.route('/transactions', methods=['categorize'])
 def categorize_transactions():
     needs, wants, situational = utils.categorize_transaction(purchases)
     return jsonify({"needs": needs, "wants": wants, "situational": situational})
 
 
-@app.route('reminder', methods=['remind'])
+@app.route('/reminder', methods=['remind'])
 def remind():
     data = request.json
     time = data['time']
     return jsonify({"time": time})
 
-
+CORS(app)
 if __name__ == "__main__":
     app.run(debug=True)
+    
+
